@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    title SignIn SignUp
+    |     
+    style.
+      div {
+      background-color: white;
+      }
+      .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 10px 35px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      }
+      .buttonSignup {
+      background-color: #008080; /* Teal */
+      border: none;
+      color: white;
+      padding: 12px 35px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      }
+  |   
+  body(bgcolor='lightblue')
+    h1
+      center  Verto Messenger 
+    // <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+    center
+      div(style='width: 500px; height:400px; margin: 0 0 20px 0; border: solid 4px #999;')
+        // <div class="controls"></div><br>
+        br
+        |     
+        img(src='Images/logo1.png', width='150', height='70')
+        br
+        br
+        |     
+        form
+          input#userName(name='username', style='width:300px; height: 22px', placeholder='username', required='', type='email')
+          br
+          br
+          |     
+          input#passWord(name='password', style='width:300px; height: 22px', placeholder='password', required='', type='password')
+          br
+          br
+          |     
+          input#SignIn.button(value='LOGIN', type='submit')
+          br
+          |     
+          hr(width='50%')
+          |     
+          a(href='signup.jade')
+            input#SignUp.buttonSignup(value='Create New Account', type='button')
+          br
+          br
+          |      
+          a(href='signup.jade') Forgotten Account

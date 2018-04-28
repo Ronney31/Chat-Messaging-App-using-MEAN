@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+    <script>
+    function validateForm() {
+        //alert("I am called");
+        /*var fname = document.forms["myForm"]["firstname"].value;
+        var lname = document.forms["myForm"]["lastname"].value;
+        var eml = document.forms["myForm"]["email"].value;
+
+        if (fname == "") {
+            alert("First Name cannot be left blank");
+            return false;
+        }
+        if (lname == "") {
+            alert("Last Name cannot be left blank");
+            return false;
+        }
+        if (eml == "") {
+            alert("Email cannot be left blank");
+            return false;
+        }*/
+        var pass = document.forms["myForm"]["password"].value;
+        var repass = document.forms["myForm"]["repassword"].value;
+        if(pass != repass)
+        {
+            alert("Password should be same");
+            return false;
+        }
+        
+
+
+    }
+    </script>
+    <style>
+    div {
+        max-width: 700px;
+        padding: 2px 2px 15px;
+        border: 1px solid #b3b3b3;
+        margin: 10 auto;
+        box-shadow: 0 10px 10px #a7a7a7, inset 0 11px 0 #fff;
+        background: #fcfcfc;
+        text-align: center;
+    }
+    h1 {
+        margin: 0 10px;
+        font-size: 45px;
+        text-align: center;
+        padding: 0px 0px 15px;
+    }
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    .buttonSignup {
+    background-color: #008080; /* Teal */
+    border: none;
+    color: white;
+    padding: 11px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    .buttonSignIn {
+    background-color: #ff5733; /* red */
+    border: none;
+    color: white;
+    padding: 11px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    </style>
+  </head>
+
+  <body bgcolor="lightblue">
+    <h1>Verto Messenger </h1>
+    <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+    <center>
+    <div>
+    <!--<div class="controls"></div><br>-->
+    <br>
+    <img src="Images/logo1.png" width="150" height="70"><br><br>
+    <hr width="80%">
+    <p>
+        <i>Please fill the form in order to compleate creating new account</i>
+    </p>
+
+    <form name="myForm" onsubmit="return validateForm()" method="post"><!--action= "/addUser"-->
+    <!--<form name="myForm" method="post">-->
+    First Name &#160; &nbsp; 
+    <input id="firstname" type="text" name="firstName" style="width:150px" placeholder="First Name"  required><br><br>
+    Last Name &#160; &nbsp; 
+    <input id="lastname" type="text" name="lastName" style="width:150px" placeholder="Last Name"  required><br><br>
+    Email &#160; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="email" type="email" name="email" style="width:150px" placeholder="Username"  required><br><br>
+    Gender &#160; &nbsp;  
+    <input type="radio" name="gender" id="checkMale" value="male" checked> Male
+    &nbsp; 
+    <input type="radio" name="gender" id="checkFemale" value="female"> Female
+    &nbsp; 
+    <input type="radio" name="gender" id="checkOther" value="other"> Other <br><br>
+    Passwrod &#160; &#160;&nbsp; &nbsp;
+    <input id="password" type="password" name="passWord" style="width:150px" placeholder="Passwrod"  required><br><br>
+    Confirm Password &nbsp;&nbsp;&nbsp;&nbsp;
+    <input id="repassword" type="password" name="repassWord" style="width:150px" placeholder="Re-Enter Password"  required><br><br>
+
+    <hr width="80%"><br>
+    <a href="logIn">
+    <input id="SignIn" type="button" class="buttonSignIn" value="SigIn" ></a> 
+    <input id="SignUp" type="submit" class="buttonSignup" value="SignUp" ><br><br>
+
+      
+
+    </form>
+    <a href="viewUser">View User</a> 
+    </div>
+    </center>
+  </body>
+</html>

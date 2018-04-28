@@ -1,0 +1,157 @@
+var express = require('express');
+var app = express();
+var path = require('path');
+var fs = require('fs');
+var bodyParser = require('body-parser');
+var sessions = require('express-session');
+
+var session;
+//enter the following two lines to get access to mongoose and to connect to the database
+var mongoose = require('mongoose');
+// mongoose.Promise = global.Promise;
+// mongoose.connect("mongodb://localhost:8080/database")
+//mongoose.connect('mongodb://localhost:/test');
+//var db = mongoose.connect(config.mongo.uri, config.mongo.options);
+
+// viewed at http://localhost:8080
+
+//app.use(bodyParser.json()) basically tells the system that you want json to be used. 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+//app.use(bodyParser());
+app.use(sessions({
+	secret: '**^&as%@#a67d62a^%^^&S%&%^',
+	resave: false,
+	saveUninitialized: true
+}))
+
+app.get('/', function(req, res) {
+	console.log(req.query.username);
+	session = req.session;
+	if(session.uniqueID){
+    	console.log("we are in");
+		resp.redirect('/redirects');
+	}    res.sendFile(path.join(__dirname + '/ui/logIn.html'));
+});
+app.get('/signUp', function(req, res) {
+    res.sendFile(path.join(__dirname + '/ui/signUp.html'));
+    //res.end(req.query.firstName+" "+req.query.lastName);
+});
+app.get('/logIn', function(req, res) {
+	console.log(req.query.username);
+	console.log(req.query.password);
+	if(req.query.username == 'admin@a' && req.query.password == 'a'){
+		console.log('matched');
+	}
+	else{
+		console.log('not matched');
+	}
+    res.sendFile(path.join(__dirname + '/ui/logIn.html'));
+});
+
+//post data
+app.post('/logIn', function(req,res){
+	session = req.session;
+	if(session.uniqueID){
+		console.log("we are in");
+		resp.redirect('/redirects');
+	}
+	console.log(req.query.username);
+	if(req.query.username == 'admin@a' && req.query.password == 'a'){
+		console.log("we are in checker");
+		session.uniqueID = req.query.username;
+	}
+	res.redirect('/redirects');
+});
+app.post('/', function(req,res){
+	session = req.session;
+	if(session.uniqueID){
+		console.log("we are in");
+		resp.redirect('/redirects');
+	}
+	console.log(req.query.username);
+	if(req.query.username == 'admin@a' && req.query.password == 'a'){
+		console.log("we are in checker");
+		session.uniqueID = req.query.username;
+	}
+	res.redirect('/redirects');
+});
+app.get('/logout', function(req,res){
+	req.session.destroy(function(error){
+		console.log("Successfully Logout");
+		res.redirect('/logIn.html');
+	});
+});
+app.get('/redirects', function(req,res){
+	session = req.session;
+	if(session.uniqueID){
+		console.log(session.uniqueID);
+		resp.redirect('/chat.html');
+	}else{
+		res.end("Who are you ?? ");
+	}
+});
+
+
+
+app.post('/signUp', function(req,res){
+	res.end(JSON.stringify(req.body));
+	//password checker
+	//if(req.body.username == 'userlist' && req.body.userPass == 'passlist')
+});
+// static file/view The static middleware allows you to designate one or more directories as containingstatic 
+// resources that are simply to be delivered to the client without any special handling.This is where you would 
+// put things like images, CSS files, and client-side JavaScript files.
+// we name the folder as local instead of public
+// public folder will be hidden from the user and our image will be in subdirectory called Image
+app.use(express.static(__dirname + '/local'));
+
+//if the link or the file is not available/present then put 404 ERROR
+app.get(/^(.+)$/, function(req, resp){
+	try{
+		if(fs.statSync(path.join(__dirname, './ui/', req.parms[0]+'.html')).isFile()){
+			//continue;
+		}
+	}catch(err){
+		resp.sendFile('404error.html',{root: path.join(__dirname, './ui')});
+	}
+});
+
+
+// **** database ***
+app.use("/", (req,res) => {
+	res.sendFile(__dirname + "/signUp.html");
+});
+
+/*
+Once the user enters data in the input field and clicks the add button, we want the contents 
+of the input field to be stored in the database. In order to know the format of the data in 
+the database, we need to have a Schema.
+*/
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+var nameSchema = new mongoose.Schema({
+  firstName: String,
+  lastName: String,
+  email: String,
+  passWord: String
+});
+//creating a model from it 
+var User = mongoose.model("User", nameSchema);
+//** Creating RESTful API **
+app.post("/addname", (req, res) => {
+	var myData = new User(req.body);
+  	myData.save()
+    	.then(item => {
+      		res.send("item saved to database");
+    	})
+    	.catch(err => {
+      		res.status(400).send("unable to save to database");
+    });
+});
+
+});
+
+app.listen(8080);
+console.log("Listening on port " + 8080);

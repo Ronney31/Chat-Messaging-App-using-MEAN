@@ -1,0 +1,136 @@
+doctype html
+html
+  head
+    title Register
+    |     
+    script.
+      function validateForm() {
+      //alert("I am called");
+      /*var fname = document.forms["myForm"]["firstname"].value;
+      var lname = document.forms["myForm"]["lastname"].value;
+      var eml = document.forms["myForm"]["email"].value;
+      if (fname == "") {
+      alert("First Name cannot be left blank");
+      return false;
+      }
+      if (lname == "") {
+      alert("Last Name cannot be left blank");
+      return false;
+      }
+      if (eml == "") {
+      alert("Email cannot be left blank");
+      return false;
+      }*/
+      var pass = document.forms["myForm"]["password"].value;
+      var repass = document.forms["myForm"]["repassword"].value;
+      if(pass != repass)
+      {
+      alert("Password should be same");
+      return false;
+      }
+      }
+    |     
+    style.
+      div {
+      background-color: white;
+      }
+      .button {
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      }
+      .buttonSignup {
+      background-color: #008080; /* Teal */
+      border: none;
+      color: white;
+      padding: 11px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      }
+      .buttonSignIn {
+      background-color: #ff5733; /* red */
+      border: none;
+      color: white;
+      padding: 11px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      }
+  |   
+  body(bgcolor='lightblue')
+    h1
+      center  Verto Messenger 
+    // <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+    center
+      div(style='width: 750px; height:550px; margin: 0 0 20px 0; border: solid 4px #999; text-align: center;')
+        // <div class="controls"></div><br>
+        br
+        |     
+        img(src='Images/logo1.png', width='150', height='70')
+        br
+        br
+        |     
+        hr(width='80%')
+        |     
+        p
+          | Please fill the form in order to compleate creating new account
+        |     
+        form(name='myForm', onsubmit='return validateForm()', method='post')
+          // <form name="myForm" method="post">
+          | First Name &nbsp; &nbsp; 
+          input#firstname(name='firstName', style='width:150px', placeholder='First Name', required='', type='text')
+          br
+          br
+          |     Last Name &nbsp; &nbsp; 
+          |     
+          input#lastname(name='lastName', style='width:150px', placeholder='Last Name', required='', type='text')
+          br
+          br
+          |     Email &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          |     
+          input#email(name='email', style='width:150px', placeholder='Username', required='', type='email')
+          br
+          br
+          |     Gender &nbsp; &nbsp;  
+          |     
+          input#checkMale(name='gender', value='male', checked='', type='radio')
+          |  Male
+          |     &nbsp; 
+          |     
+          input#checkFemale(name='gender', value='female', type='radio')
+          |  Female
+          |     &nbsp; 
+          |     
+          input#checkOther(name='gender', value='other', type='radio')
+          |  Other 
+          br
+          br
+          |     Passwrod &nbsp; &nbsp;&nbsp; &nbsp;
+          |     
+          input#password(name='passWord', style='width:150px', placeholder='Passwrod', required='', type='password')
+          br
+          br
+          |     Confirm Password &nbsp;&nbsp;&nbsp;&nbsp;
+          |     
+          input#repassword(name='repassWord', style='width:150px', placeholder='Re-Enter Password', required='', type='password')
+          br
+          br
+          |     
+          hr(width='80%')
+          br
+          |     
+          a(href='login.jade')
+            input#SignIn.buttonSignIn(value='SigIn', type='button')
+          |  
+          |     
+          input#SignUp.buttonSignup(value='SignUp', type='submit')
+          br
+          br

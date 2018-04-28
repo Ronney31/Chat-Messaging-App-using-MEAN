@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>web chat service</title> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <style type="text/css">
+    body {
+		  width: 100%;
+		  float: left;
+		  font-family: 'Nunito';
+		}
+
+		/*.class1,
+		.class2,
+		.class3{
+		  width: 15.33%;
+		  float: left;
+		  height: 700px;
+		}*/
+
+		p {
+		  padding-top: 25px;
+		  text-align: center;
+		}
+		.link2
+		{
+		   border: solid 1px #aaa;
+		   width: 88%;
+		   text-align: center;
+		   border-radius: 3x;
+		   -moz-border-radius: 3px;
+		   -webkit-border-radius: 3px;
+		   background-color: #89ba38;
+		   color: #000;
+		   text-decoration: none;
+		   font-weight: bold;
+		   margin: 10px 3px 10px 3px;
+		   padding: 3px;
+		   display: inline-block;
+		}
+		.link2:hover { background-color: #acea11; } 
+
+		h2{
+		    font-size: 18px;
+		    padding: 10px 20px;
+		    color: #575ed8;
+		}
+
+		#user-name{
+		    max-width: 720px;
+		    margin: 30px auto;
+		    border: 1px solid #ddd;
+		    box-shadow: 1px 3px 5px rgba(0,0,0,0.05);
+		    border-radius: 2px;
+		    text-align: center;
+		}
+
+		#chat-window{
+		    height: 300px;
+		    overflow: auto;
+		    background: #f9f9f9;
+		    overflow-y :auto;
+		}
+
+		#output p{
+		    padding: 14px 0px;
+		    margin: 0 20px;
+		    border-bottom: 1px solid #e9e9e9;
+		    color: #555;
+		}			
+		#output strong{
+		    color: #575ed8;
+		}
+		#typing p{
+		    color: #aaa;
+		    padding: 14px 0px;
+		    margin: 0 20px;
+		}
+		input{
+		    padding: 10px 20px;
+		    box-sizing: border-box;
+		    background: #eee;
+		    border: 0;
+		    display: block;
+		    width: 100%;
+		    background: #fff;
+		    border-bottom: 1px solid #eee;
+		    font-family: Nunito;
+		    font-size: 16px;
+		}
+		textarea
+		{
+		    padding: 0px 20px;
+		    box-sizing: border-box;
+		    background: #eee;
+		    border: 0;
+		    display: block;
+		    width: 100%;
+		    background: #fff;
+		    border-bottom: 1px solid #eee;
+		    font-family: Nunito;
+		    font-size: 16px;
+		}
+
+		#send{
+		    background: #575ed8;
+		    color: #fff;
+		    font-size: 18px;
+		    border: 0;
+		    padding: 9px 0;
+		    width: 100%;
+		    border-radius: 0 0 2px 2px;
+		}
+
+    </style>
+  </head>  
+  <body onload="showUser();">
+<hr>
+  <div style="background-color:orange; height: 80px; width: 99%;">
+    <h1><center>USER PROFILE</center></h1>
+	Welcome : <label type="text" id="user" ></label>
+	<!-- {{ logger }}
+ -->
+	<!-- <script src="/myIndex.js">
+		logger = dynamicUserNm;
+	</script> -->
+	<!-- the above input is needed to be replaced by main js file -->
+    <a href="/logout" style="float: right;"> Logout</a>
+  </div>
+  <hr>
+  <div>
+	  <div  style="background-color:#9BCB3B; width: 18%; float: left; height: 650px;">
+	   <center><hr><h4>Friend List</h4><hr></center>
+	   <div id="friends">    
+	    </div>
+	  </div>
+	  <div style="background-color:#1AB99E; width: 63%; float: left; height: 650px; border-left: 6px solid black;">
+	    <hr><center><h4><label> Receiver Friend Name</label></h4></center><hr>   
+	    <!--<div id="content" style="width: 850px; height: 300px; margin: 0 0 20px 0; border: solid 2px black; overflow-y: scroll">
+	    </div>  -->
+	    <div id="user-name">
+	    	<div id="userNm">
+		    <h2>MESSAGES</h2></div>
+	            <div id="chat-window">
+	                <div id="output"></div>
+					<div id="typing"></div>
+			</div>
+			<br>   
+		    <input id="handle" type="hidden" placeholder="Handle name" />
+		    <textarea  id="message" placeholder="type message to send" type="text"></textarea> 
+		    <center><button id="send">Send</button></center>
+		  </div>
+		</div>
+	  <div id="content" style="background-color:#fbf8b3; width: 17%; float: left; height: 650px;  border-left: 6px solid black;">
+	    <center><hr><h4>People You May Know</h4><hr></center>
+	        <div id="people">
+	     	    	<div id="online">
+	     	    
+	     	    </div>
+  		</div>
+  	</div>
+    <script src="/chat.js"></script>
+</body>
+</html>

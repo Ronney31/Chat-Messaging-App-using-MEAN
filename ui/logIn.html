@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SignIn SignUp</title>
+    <style>
+    div {
+        max-width: 480px;
+        padding: 10px 15px 40px;
+        border: 1px solid #b3b3b3;
+        margin: 10 auto;
+        box-shadow: 0 10px 10px #a7a7a7, inset 0 11px 0 #fff;
+        background: #fcfcfc;
+    }
+    h1 {
+        margin: 0 10px;
+        font-size: 50px;
+        text-align: center;
+        padding: 0px 0px 15px;
+    }
+    .button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    .buttonSignup {
+    background-color: #008080; /* Teal */
+    border: none;
+    color: white;
+    padding: 12px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+
+    </style>
+  </head>
+
+  <body bgcolor="lightblue"  style="padding: 10px">
+    <h1> Verto Messenger </h1>
+    <!--<img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">-->
+    <center>
+    <div>
+    <!--<div class="controls"></div><br>-->
+    <br>
+    <img src="Images/logo1.png" width="150" height="70"><br><br>
+    <form method="post">
+    <input id="userName" type="email" name="username" style="width:300px; height: 22px" placeholder="username"  required ><br><br>
+    <input id="passWord" type="password" name="password" style="width:300px; height: 22px" placeholder="password"  required><br><br>
+    <input id="SignIn" type="submit" class="button" value="LOGIN" ><br>
+    <hr width="50%">
+    <a href="signUp"><input id="SignUp" type="button" class="buttonSignup" value="Create New Account" ></a><br><br>
+     <a href="signUp">Forgotten Account</a> 
+
+    </form>
+    </div>
+    </center>
+
+  </body>
+</html>
